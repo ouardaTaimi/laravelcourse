@@ -17,7 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -26,7 +28,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -37,4 +40,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function paiements()
+    {
+        // return    $this->belongsTo(TypeArticle::class);
+        return  $this->hasMany(Paiement::class);
+    }
+    // first la cle etranger de primaire of this table then the oher table 
+    public function roles()
+    {
+        // return    $this->belongsTo(TypeArticle::class);
+        return  $this->belongsToMany(Role::class, "user_role", "user_id", "role_id");
+    }
+    public function permissions()
+    {
+        // return    $this->belongsTo(TypeArticle::class);
+        return  $this->belongsToMany(Permission::class, "user_permission", "user_id", "permission_id");
+    }
 }
