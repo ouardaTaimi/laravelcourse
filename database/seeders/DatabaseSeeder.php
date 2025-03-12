@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Article;
 use App\Models\Client;
 use App\Models\TypeArticle;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -24,8 +25,9 @@ class DatabaseSeeder extends Seeder
         // Article::truncate();
         $this->call(TypeArticleTableSeeder::class);
 
-        Article::factory(100)->create();
-        Client::factory(100)->create();
+        Article::factory(10)->create();
+        Client::factory(10)->create();
+        User::factory(10)->create();
 
         $this->call(DureeLocationSeeder::class);
         $this->call(StatutLocationTableSeeder::class);
